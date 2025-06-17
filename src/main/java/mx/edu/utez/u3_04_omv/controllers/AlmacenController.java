@@ -1,5 +1,7 @@
 package mx.edu.utez.u3_04_omv.controllers;
 import jakarta.validation.Valid;
+import mx.edu.utez.u3_04_omv.dtos.AdquisicionDto;
+import mx.edu.utez.u3_04_omv.dtos.AlmacenDto;
 import mx.edu.utez.u3_04_omv.models.Almacen;
 import mx.edu.utez.u3_04_omv.services.AlmacenService;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +24,12 @@ public class AlmacenController {
     }
 
     @PostMapping("/{idCede}")
-    public Almacen save(@PathVariable Long idCede, @Valid @RequestBody Almacen almacen) {
-        return service.save(idCede, almacen);
+    public Almacen save(@PathVariable Long idCede, @Valid @RequestBody AlmacenDto dto) {
+        return service.save(idCede, dto);
     }
-
+    @PatchMapping("/adquirir/{almacenId}")
+    public Almacen adquirir(@PathVariable Long almacenId, @Valid @RequestBody AdquisicionDto dto) {
+        return service.adquirirAlmacen(almacenId, dto);
+    }
 
 }

@@ -20,4 +20,8 @@ public class ClienteService {
         clientes.add(cliente);
         return cliente;
     }
+    public boolean existsById(Long id) {
+        return clientes.stream().anyMatch(c -> c.getId().equals(id));
+    }
+
 }

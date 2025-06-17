@@ -15,18 +15,16 @@ public class Almacen {
     private Long id;
     private String clave;
     private LocalDate fechaRegistro;
-
-    @DecimalMin(value = "0.01", message = "El precio de renta debe ser mayor que 0")
     private double precioRenta;
-
-    @DecimalMin(value = "0.01", message = "El precio de venta debe ser mayor que 0")
     private double precioVenta;
-
-    @Pattern(regexp = "^(G|M|P)$", message = "El tamaño debe ser G, M o P")
     private String tamaño;
-
-    @NotBlank(message = "La clave de la cede no puede estar vacía")
     private String claveCede;
+
+    // NUEVOS CAMPOS
+    private String estatus = "Disponible"; // Disponible, Rentado, Vendido
+    private Long clienteId; // ID del cliente que adquirió el almacén
+    private LocalDate fechaAdquisicion;
+    private String tipoAdquisicion; // "Compra" o "Renta"
 
     public Almacen(Long id, double precioRenta, double precioVenta, String tamaño, String claveCede) {
         this.id = id;
